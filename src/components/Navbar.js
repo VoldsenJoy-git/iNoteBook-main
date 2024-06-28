@@ -2,6 +2,7 @@ import React from 'react'
 import {Link, useLocation} from "react-router-dom";
 import {useEffect} from "react";
 import { useHistory } from 'react-router-dom';
+//uselocation hook  is used to active the home , about button which is pressed
 
 const Navbar = () => {
   let history = useHistory();
@@ -11,11 +12,10 @@ const Navbar = () => {
   }
   let location = useLocation();
   useEffect(() => {
-    // ga.send(["pageview", location.pathname]);
-    // console.log(location.pathname);
   }, [location]);
   return (
     <>
+    {/* importing navbar from bootstrap */}
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">iNotebook</Link>
@@ -25,12 +25,14 @@ const Navbar = () => {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
+                {/* if Home is clicked it will be active */}
                   <Link className={`nav-link ${location.pathname === "/"?"active":""}`} aria-current="page" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
                   <Link className={`nav-link ${location.pathname === "/about"?"active":""}`} to="/about">About</Link>
                 </li>
               </ul>
+  {/* if token is present i.e user is logged in then show the logout button */}
               {!localStorage.getItem('token')?<form className="d-flex">
               <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link>
               <Link className="btn btn-primary mx-1" to="/signup" role="button">Signup</Link>

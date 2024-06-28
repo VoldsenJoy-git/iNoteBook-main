@@ -22,3 +22,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ### Database user
 ![Screenshot (114)](./Database_notes.png)
 ### Database notes
+
+
+frontend( add notes , delete and update notes) is handled by Notestate.js 
+Modal is used to update notes in Notes.js

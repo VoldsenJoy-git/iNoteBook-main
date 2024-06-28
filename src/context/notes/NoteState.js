@@ -2,7 +2,8 @@ import NoteContext from "./noteContext";
 import { useState } from "react";
 
 const NoteState = (props) => {
-  const host = "http://localhost:5000"
+  const host = "http://localhost:5000"   // localhost 5000 is used in backend ,
+                                        // to perform add, update or delete in the backend
   const notesInitial = []
   const [notes, setNotes] = useState(notesInitial)
 

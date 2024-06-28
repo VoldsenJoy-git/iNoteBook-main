@@ -5,12 +5,13 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken'); 
 const fetchuser = require('../middleware/fetchuser');
-const JWT_SECRET = 'Divyanshuisagoodb$oy';
+
+const JWT_SECRET = 'Joydeep@cse';
 
 //ROUTE 1: Create a User using: POST "/api/auth/createuser". No login required
 router.post('/createuser',[
     body('name','Enter a Valid name').isLength({ min: 3 }),
-    body('email','Enter valid email').isEmail(),
+    body('email','Enter valid email').isEmail(),                        //validate using express-validator
     body('password','Must be 5 characters').isLength({ min: 5 }),
 ],
 async (req,res)=>{
@@ -30,7 +31,7 @@ async (req,res)=>{
             return res.status(400).json({success,error:"Sorry a user with this email already exists"})
         }
         const salt =await bcrypt.genSalt(10);
-        secPass = await bcrypt.hash(req.body.password,salt);
+        secPass = await bcrypt.hash(req.body.password,salt); // making secure password
         
         // Creating a new user
         user = await User.create({
@@ -76,7 +77,7 @@ async (req,res)=>{
         {
             return res.status(400).json({success,error:"Please try to login with correct Credentials"})
         }    
-        const passwordCompare =await bcrypt.compare(password,user.password);
+        const passwordCompare =await bcrypt.compare(password,user.password);   // return boolean 
         if(!passwordCompare)
         {
             return res.status(400).json({success,error:"Please try to login with correct Credentials"})
@@ -104,7 +105,7 @@ router.post('/getuser',fetchuser,async (req,res)=>
     try 
     {
         const userId = req.user.id;
-        const user = await User.findById(userId).select("-password");
+        const user = await User.findById(userId).select("-password");   // select everything except password
         res.send(user)
     } 
     catch (error) 
