@@ -1,4 +1,7 @@
-
+1.  • Techstack: MongoDB, ExpressJS, ReactJS
+2.  • Used ExpressJS to create backend-servers and MongoDB for storing data
+3.  • To create User Interface used ReactJS for dynamic rendering of contents using DOM-Manipulation
+4.  • For User authentication and token Decryption used JSON Web Token (JWT) and Middleware
 
 In the project directory, you can run:
 
